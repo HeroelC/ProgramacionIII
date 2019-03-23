@@ -67,9 +67,11 @@ public class MySimpleLinkedList implements Iterable<Object> {
 	protected class IteratorMySimpleLinkedList implements Iterator<Object> {
 
 		private int posicionList;
-
+		private Node nodeTemp;
+		
 		public IteratorMySimpleLinkedList() {
 			posicionList = 0;
+			nodeTemp = first;
 		}
 
 		public boolean hasNext() {
@@ -77,7 +79,8 @@ public class MySimpleLinkedList implements Iterable<Object> {
 		}
 
 		public Object next() {
-			Object tmp = get(posicionList);
+			Object tmp = nodeTemp.getInfo();
+			nodeTemp = nodeTemp.getNext();
 			posicionList += 1;
 			return tmp;
 		}
