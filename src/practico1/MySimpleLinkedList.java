@@ -12,9 +12,24 @@ public class MySimpleLinkedList implements Iterable<Object> {
 		size = 0;
 	}
 
-	public Iterator<Object> iterator() {
-		Iterator it = new IteratorMySimpleLinkedList();
-		return it;
+	public IteratorMySimpleLinkedList iterator() {
+		return new IteratorMySimpleLinkedList();
+	}
+	
+	public boolean contains(Object value) {
+		
+		Iterator<Object> it = this.iterator();
+		
+		while(it.hasNext()) {
+		
+			Object aux = it.next();
+			
+			if(aux.equals(value)) {
+				return true;
+			}
+		}
+		
+		return false;
 	}
 
 	public void insertFront(Object o) {
@@ -23,7 +38,25 @@ public class MySimpleLinkedList implements Iterable<Object> {
 		first = tmp;
 		size += 1;
 	}
-
+	
+	public void insertLast(Object o) {
+		if(isEmpty()) {
+			insertFront(o);
+		}else {
+			Node tmp = first;
+			while(tmp.getNext() != null) {
+				tmp = tmp.getNext();
+			}
+			Node tmpInsert = new Node(o, null);
+			tmp.setNext(tmpInsert);
+			size += 1;
+		}
+	}
+	//implementar
+	public void insertSort() {
+		
+	}
+	
 	public Object extractFront() {
 
 		Object tmpObject = first.getInfo();
@@ -64,7 +97,7 @@ public class MySimpleLinkedList implements Iterable<Object> {
 		return tmpNode.getInfo();
 	}
 
-	protected class IteratorMySimpleLinkedList implements Iterator<Object> {
+	public class IteratorMySimpleLinkedList implements Iterator<Object> {
 
 		private int posicionList;
 		private Node nodeTemp;
@@ -83,6 +116,10 @@ public class MySimpleLinkedList implements Iterable<Object> {
 			nodeTemp = nodeTemp.getNext();
 			posicionList += 1;
 			return tmp;
+		}
+		
+		public Object get() {
+			return nodeTemp.getInfo();
 		}
 
 	}
