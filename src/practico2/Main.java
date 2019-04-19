@@ -6,11 +6,8 @@ public class Main {
 		// TODO Auto-generated method stub
 
 		TNode root = new TNode(10);
-		BTree arbolito = new BTree(root);
+		BTree tree = new BTree(root);
 		
-		arbolito.insert(7);
-		arbolito.insert(5);
-		arbolito.inOrder();
 	}
 
 }
